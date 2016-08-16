@@ -1,0 +1,11 @@
+
+
+.myfont {
+    font-family: 'my-font';
+}
+
+@font-face {
+    font-family: 'my-font';
+    src: url('w-mania.ttf') format('truetype');
+}
+
