@@ -15,14 +15,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 var mongoose = require('mongoose');
+
 var ankka_user = require('./.devenv').USERNAME;
 var ankka_pass = require('./.devenv').PASSWORD;
-console.log('env params from .devenv')
-console.log('username: ' + ankka_user);
-console.log('passwo: ' + ankka_pass);
-//mongoose.connect('mongodb://localhost:27017/test');
-mongoose.connect('mongodb://ds161475.mlab.com:61475/ankka', 
-{ user: ankka_user, pass: ankka_pass });
+// var db_url = 'mongodb://localhost:27017/test;'
+var db_url = 'mongodb://ds161475.mlab.com:61475/ankka'
+console.log('Database URL: ' + db_url);
+mongoose.connect(db_url, { user: ankka_user, pass: ankka_pass });
 
 var db = mongoose.connection;
 mongoose.Promise = global.Promise;
