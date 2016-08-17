@@ -1,11 +1,13 @@
-<h1 class="myfont">{{title}}</h1>
+<div class="container">
+  <h1 class="myfont">{{title}}</h1>
 
-<nav>
-  <a routerLink="/popular">Popular</a>
-  <a routerLink="/polls">Polls</a>
-  <a routerLink="/create">Create Poll</a>
-</nav>
-<hr>
+  <nav>
+    <a routerLink="/popular">Popular</a>
+    <a routerLink="/polls">Polls</a>
+    <a routerLink="/create">Create Poll</a>
+  </nav>
+  <hr>
 
-<hr>
-<router-outlet></router-outlet>
+  <hr>
+  <router-outlet></router-outlet>
+</div>

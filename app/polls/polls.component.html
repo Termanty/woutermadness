@@ -4,6 +4,7 @@
   <ul>
     <li *ngFor="let poll of polls">
       {{poll.title}}
+      <a routerLink="detail/{{poll.id}}" class="btn btn-sm btn-primary">vote</a>
     </li>
   </ul>
 </div>
