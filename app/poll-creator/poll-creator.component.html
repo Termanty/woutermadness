@@ -22,7 +22,7 @@
 
   <div formArrayName="choices">
     <div *ngFor="let choice of choices.controls; let i=index" [formGroupName]='i' class="form-group">
-      <label for="choice">Choice</label>
+      <label for="choice">Choice #{{i+1}}</label>
       <input type="text"
             formControlName="choice"
             id="choice"
@@ -32,8 +32,8 @@
   </div>
 
   <div>
-    <button (click)="addChoice()" class="btn btn-warning">add choice</button>
-  </div>
+    <button (click)="addChoice()" class="btn btn-sm btn-warning">+ add more choices</button>
+  </div><br>
 
   <div>
     <button (click)="savePoll()" class="btn bnt-lg btn-danger">Save Poll</button>
@@ -41,3 +41,11 @@
 </form>
 
 {{ form.value | json }}
+
+<br>
+<h1>{{ form.value.title }}</h1>
+<h3>{{ form.value.description }}</h3>
+<div *ngFor="let obj of form.value.choices">
+    <input type="radio"> {{obj["choice"]}}
+</div>
+

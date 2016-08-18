@@ -1,2 +1,12 @@
-<h3>Answer this poll</h3>
+<div *ngIf="poll">
+  <h3>{{poll.title}}</h3>
+  <p>{{poll.description}}</p>
+  <form action="">
+    <div *ngFor="let choice of poll.choices; let i = index">
+      <input type="radio" name="vote" value="{{i}}"> {{choice}}
+    </div>
+  </form>
+</div>
 
+<br>
+<button (click)="goBack()" class="btn btn-sm btn-primary">Back</button>

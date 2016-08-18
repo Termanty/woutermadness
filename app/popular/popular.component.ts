@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Poll } from '../poll.model';
-import { PollService } from '../poll.service';
+import { Poll } from '../model/poll.model';
+import { PollService } from '../service/poll.service';
 
 @Component({
   selector: 'app-popular',

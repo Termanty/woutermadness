@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
-import { Poll } from '../poll.model';
-import { PollService } from '../poll.service';
+import { Poll } from '../model/poll.model';
+import { PollService } from '../service/poll.service';
 
 @Component({
   selector: 'app-poll-creator',
@@ -16,7 +16,7 @@ export class PollCreatorComponent implements OnInit {
     private pollService: PollService,
     private _fb: FormBuilder) {
     this.form = _fb.group({
-      title: 'trump vs hilary',
+      title: '',
       description: '',
       choices: this.buildArray()
     });
@@ -32,6 +32,7 @@ export class PollCreatorComponent implements OnInit {
 
   buildArray(): FormArray {
     this.choices = this._fb.array([
+      this.buildGroup(),
       this.buildGroup()
     ]);
     return this.choices;
@@ -40,11 +41,16 @@ export class PollCreatorComponent implements OnInit {
   addChoice() { this.choices.push(this.buildGroup()) }
 
   savePoll() {
+    let choices: string[] = [];
+    for (let obj of this.form.value['choices']) { // En kyl tajuu miksi tää eikä forEach
+      choices.push(obj['choice'])
+    }
     this.pollService.addPoll(
       new Poll(
         this.form.value['title'],
         this.form.value['description'],
-        this.form.value['choices'],55)
+        choices,
+        Math.ceil(Math.random() * 10000))
     );
   }
 }

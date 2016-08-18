@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { Poll } from './poll.model';
+import { Poll } from '../model/poll.model';
 
 const POLLS = [
   new Poll('Clinton vs. Trump',
     'Title says all. Which one is your favourite?',
-    ['Clinton', 'Trump', 'Not interested'], 1),
+    ['Clinton', 'Trump', 'Not interested'], 1, 8),
   new Poll('CocaCola vs Pepsi',
     'Taste maters. Which one is your favourite?',
-    ['CocaCola', 'Pepsi', 'Not for me'], 2),
+    ['CocaCola', 'Pepsi', 'Not for me'], 2, 3),
   new Poll('Pasta vs Potatoes',
     'Taste maters. Which one is your favourite?',
-    ['Pasta', 'Potatoes', 'Not for me'], 3),
+    ['Pasta', 'Potatoes', 'Not for me'], 3, 3),
   new Poll('Milk vs Vine',
     'Taste maters. Which one is your favourite?',
     ['Milk', 'Vine', 'I prefer water'], 4)
@@ -22,6 +22,10 @@ export class PollService {
   polls: Poll[] = [];
 
   constructor() { this.polls = POLLS }
+
+  getPoll(id: number) : Promise<Poll> {
+    return this.getPolls().then(polls => polls.find(poll => poll.id === id));
+  }
 
   getPolls() { return Promise.resolve(this.polls); };
 
