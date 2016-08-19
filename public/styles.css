@@ -1,7 +1,27 @@
 
+@media (min-width: 900px) {
+    .container{
+        max-width: 700px;
+    }
+}
+
+body {
+    background-color: #b3dcfc;
+    color: #015697;
+}
+
+/*
+#ffc084 very-light brown
+#6bcf81 very-light green
+#5fa6b3 very-light blue
+
+font
+634528 brown
+*/
 
 .myfont {
     font-family: 'my-font';
+    color: #015697;
 }
 
 @font-face {

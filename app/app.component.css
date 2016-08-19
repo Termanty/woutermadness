@@ -1,0 +1,43 @@
+.myfont {
+    font-family: 'my-font';
+    color: #015697;
+}
+
+@font-face {
+    font-family: 'my-font';
+    src: url('w-mania.ttf') format('truetype');
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+h2 {
+  font-size: 2em;
+  margin-top: 0;
+  padding-top: 0;
+}
+div nav a {
+  font-size: 1.2rem;
+  width: 13rem;
+  padding: .5rem 0rem;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  color: #b3dcfc;
+  background-color: #015697;
+}
+div nav a:hover {
+  transform: translateY(-0.1rem);
+}
+div a.active {
+  color: #015697 !important;
+  background-color: #87c9fc !important;
+}
+
+
+/*
+b4d5fc
+4ab0ff
+*/

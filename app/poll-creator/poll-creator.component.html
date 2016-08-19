@@ -1,51 +1,47 @@
-<h3>Create New Poll</h3>
-
-<form action="" [formGroup]="form">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text"
-          formControlName="title"
-          id="title"
-          class="form-control"
-          placeholder="the title of the poll"
-          required />
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea type="text-area"
-            formControlName="description"
-            id="description"
-            class="form-control"
-            placeholder="description of the poll"></textarea>
-  </div>
-
-  <div formArrayName="choices">
-    <div *ngFor="let choice of choices.controls; let i=index" [formGroupName]='i' class="form-group">
-      <label for="choice">Choice #{{i+1}}</label>
-      <input type="text"
-            formControlName="choice"
-            id="choice"
-            class="form-control"
-            placeholder="vote" />
-    </div>
-  </div>
-
+<div class="creator">
   <div>
-    <button (click)="addChoice()" class="btn btn-sm btn-warning">+ add more choices</button>
-  </div><br>
+    <h4>Create New Poll</h4>
 
-  <div>
-    <button (click)="savePoll()" class="btn bnt-lg btn-danger">Save Poll</button>
+    <form action="" [formGroup]="form">
+      <div>
+        <label for="title">Title</label>
+        <input type="text"
+              formControlName="title"
+              id="title"
+              placeholder="the title of the poll">
+      </div>
+
+      <div>
+        <label for="description">Description</label>
+        <textarea type="text-area"
+                formControlName="description"
+                id="description"
+                placeholder="description of the poll"></textarea>
+      </div>
+
+      <div formArrayName="choices">
+        <div *ngFor="let choice of choices.controls; let i=index" [formGroupName]='i'>
+          <label>Choice #{{i+1}}</label>
+          <input type="text"
+                formControlName="choice"
+                placeholder="vote"
+                class="choice">
+        </div>
+      </div>
+
+      <div>
+        <button (click)="addChoice()" class="btn btn-sm btn-warning">+ add more choices</button>
+        <button (click)="savePoll()" class="btn bnt-lg btn-primary pull-right">Save Poll</button>
+      </div>
+    </form>
+   </div>
+</div>
+
+<div class="view">
+  <h1>{{ form.value.title }}</h1>
+  <h3>{{ form.value.description }}</h3>
+  <div *ngFor="let obj of form.value.choices">
+      <input type="radio"> {{obj["choice"]}}
   </div>
-</form>
-
-{{ form.value | json }}
-
-<br>
-<h1>{{ form.value.title }}</h1>
-<h3>{{ form.value.description }}</h3>
-<div *ngFor="let obj of form.value.choices">
-    <input type="radio"> {{obj["choice"]}}
 </div>
 

@@ -6,7 +6,8 @@ import { PollService } from '../service/poll.service';
 
 @Component({
   selector: 'app-poll-creator',
-  templateUrl: 'app/poll-creator/poll-creator.component.html'
+  templateUrl: 'app/poll-creator/poll-creator.component.html',
+  styleUrls: ['./app/poll-creator/poll-creator.component.css']
 })
 export class PollCreatorComponent implements OnInit {
   form: FormGroup;
@@ -41,15 +42,11 @@ export class PollCreatorComponent implements OnInit {
   addChoice() { this.choices.push(this.buildGroup()) }
 
   savePoll() {
-    let choices: string[] = [];
-    for (let obj of this.form.value['choices']) { // En kyl tajuu miksi tää eikä forEach
-      choices.push(obj['choice'])
-    }
     this.pollService.addPoll(
       new Poll(
         this.form.value['title'],
         this.form.value['description'],
-        choices,
+        this.form.value['choices'].map(obj => obj['choice']),
         Math.ceil(Math.random() * 10000))
     );
   }

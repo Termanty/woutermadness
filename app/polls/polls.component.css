@@ -1,0 +1,50 @@
+.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+.polls {
+  list-style-type: none;
+  width: 35rem;
+}
+.polls li {
+  transform: translateX(-2rem);
+  cursor: pointer;
+  float: left;
+  background-color: #EEE;
+  margin: .2rem 0;
+  border-radius: 4px;
+}
+.polls li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  transform: translateX(-1.9rem);
+}
+.polls .left {
+  float: left;
+  padding: 0.1rem 1em;
+  background-color: #015697;
+  height: 1.8rem;
+  border-radius: 4px 0 0 4px;
+}
+.polls .title {
+  float: left;
+  width: 20rem;
+  padding: 0.1rem 0.5em;
+  height: 1.8rem;
+  border-radius: 0;
+}
+.polls .count {
+  float: left;
+  text-align: right;
+  width: 4rem;
+  padding: 0.1rem 0.5em;
+  height: 1.8rem;
+  border-radius: 0;
+}
+.polls .end {
+  float: left;
+  padding: 0.1rem 1em;
+  background-color:  #015697;
+  height: 1.8rem;
+  border-radius: 0 4px 4px 0;
+}

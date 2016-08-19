@@ -6,7 +6,10 @@ import { PollService } from '../service/poll.service';
 
 @Component({
   selector: 'app-poll-doer',
-  templateUrl: 'app/poll-doer/poll-doer.component.html'
+  templateUrl: 'app/poll-doer/poll-doer.component.html',
+  styles: [
+    `.vote { background-color: #87c9fc; padding: 1rem; }`
+  ]
 })
 export class PollDoerComponent implements OnInit {
   poll: Poll = null;
