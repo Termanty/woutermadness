@@ -19,10 +19,14 @@ export class PollsComponent  {
     }
 
   ngOnInit() {
-    this.pollService.getPollsSlowly().then(polls => this.polls = polls);
+    this.pollService.getPolls().then(polls => {
+      console.log("ngOnInit: here")
+      console.log(polls);
+      this.polls = polls;
+    });
   }
 
-  goPoll(id: number) {
+  goPoll(id: string) {
     this.router.navigate(['/poll', id]);
   }
 

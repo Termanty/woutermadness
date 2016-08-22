@@ -29,7 +29,8 @@ mongoose.Promise = global.Promise;
 var pollSchema = mongoose.Schema({
     title: String,
     description: String,
-    votes: [String]
+    choices: [String],
+    voteCount: Number
 });
 var Poll = mongoose.model('Poll', pollSchema);
 
@@ -37,11 +38,28 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('Connected to MongoDB');
 
-    app.get('/Polls', function(req, res) {
-        Poll.find({}, function(err, docs) {
-            if(err) return console.error(err);
-            res.json(docs);
-        });
+    app.get('/api/polls', function(req, res) {
+      console.log('get /polls');
+      Poll.find({}, function(err, docs) {
+        if(err) return console.error(err);
+        console.log(docs);
+        res.json(docs);
+      });
+    });
+
+    app.post('/api/polls', function(req, res) {
+      console.log('post req.body: **')
+      console.log(req.body);
+      var obj = new Poll({
+        title: req.body.title,
+        description: req.body.description,
+        choices: req.body.choices.map(o => o['choice']),
+        voteCount: 0
+      });
+      obj.save( function(err, obj) {
+        if (err) return console.error(err);
+        res.status(201).json(obj);
+      });
     });
 
     // all other routes are handled by Angular
@@ -50,7 +68,7 @@ db.once('open', function() {
     });
 
     app.listen(app.get('port'), function() {
-        console.log('MEAN app listening on port '+app.get('port'));
+        console.log('App listening on port '+app.get('port'));
     });
 });
 

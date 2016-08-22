@@ -20,7 +20,7 @@ export class PollDoerComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      let id = +params['id'];
+      let id = params['id'];
       this.pollService.getPoll(id).then(poll => this.poll = poll);
     });
   }

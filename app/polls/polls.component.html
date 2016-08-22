@@ -1,8 +1,10 @@
 <h3>Polls</h3>
 
+{{polls | json}}
+
 <div>
   <ul class="polls">
-    <li *ngFor="let poll of polls" (click)="goPoll(poll.id)">
+    <li *ngFor="let poll of polls" (click)="goPoll(poll._id)">
       <span class="left">&nbsp;</span>
       <span class="title">{{poll.title}}</span>
       <span class="count">{{poll.voteCount}}</span>
@@ -10,6 +12,3 @@
     </li>
   </ul>
 </div>
-
-
-

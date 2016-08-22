@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Poll } from '../model/poll.model';
 import { PollService } from '../service/poll.service';
@@ -15,7 +15,9 @@ export class PollCreatorComponent implements OnInit {
 
   constructor(
     private pollService: PollService,
-    private _fb: FormBuilder) {
+    private _fb: FormBuilder,
+    private router: Router
+    ) {
     this.form = _fb.group({
       title: '',
       description: '',
@@ -42,12 +44,15 @@ export class PollCreatorComponent implements OnInit {
   addChoice() { this.choices.push(this.buildGroup()) }
 
   savePoll() {
-    this.pollService.addPoll(
-      new Poll(
+    this.pollService.addPoll(JSON.stringify(this.form.value))
+/*      new Poll(
         this.form.value['title'],
         this.form.value['description'],
-        this.form.value['choices'].map(obj => obj['choice']),
-        Math.ceil(Math.random() * 10000))
-    );
+        this.form.value['choices'].map(obj => obj['choice'])*/
+        .then(res => {
+          console.log('seivattu: ');
+          console.log(res);
+          this.router.navigate(['/polls']);
+        });
   }
 }
