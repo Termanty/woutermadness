@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Poll } from '../model/poll.model';
 import { PollService } from '../service/poll.service';
+import { VoteService } from '../service/vote.service';
 
 @Component({
   selector: 'app-poll-doer',
@@ -14,8 +16,17 @@ import { PollService } from '../service/poll.service';
 export class PollDoerComponent implements OnInit {
   poll: Poll = null;
 
+  form =  new FormGroup({
+    nick: new FormControl,
+    vote: new FormControl
+  });
+
+
+
   constructor(
+    private voteService: VoteService,
     private pollService: PollService,
+    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -23,6 +34,14 @@ export class PollDoerComponent implements OnInit {
       let id = params['id'];
       this.pollService.getPoll(id).then(poll => this.poll = poll);
     });
+  }
+
+  saveVote() {
+    this.voteService.addVote(JSON.stringify({
+          poll_id: this.poll._id,
+          vote: this.form.value.vote,
+          nick: this.form.value.nick }))
+        .then(res => this.router.navigate(['/polls']));
   }
 
   goBack() { window.history.back() }

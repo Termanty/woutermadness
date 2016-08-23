@@ -34,29 +34,46 @@ var pollSchema = mongoose.Schema({
 });
 var Poll = mongoose.model('Poll', pollSchema);
 
+var voteSchema = mongoose.Schema({
+    poll_id: String,
+    vote: String,
+    comment: String,
+    nick: String,
+    voter_id: String,
+});
+var Vote = mongoose.model('Vote', voteSchema);
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('Connected to MongoDB');
 
     app.get('/api/polls', function(req, res) {
-      console.log('get /polls');
       Poll.find({}, function(err, docs) {
         if(err) return console.error(err);
-        console.log(docs);
         res.json(docs);
       });
     });
 
     app.post('/api/polls', function(req, res) {
-      console.log('post req.body: **')
-      console.log(req.body);
-      var obj = new Poll({
-        title: req.body.title,
-        description: req.body.description,
-        choices: req.body.choices.map(o => o['choice']),
-        voteCount: 0
-      });
+      var obj = new Poll(req.body);
       obj.save( function(err, obj) {
+        if (err) return console.error(err);
+        res.status(201).json(obj);
+      });
+    });
+
+    app.get('/api/votes', function(req, res) {
+      Voll.find({}, function(err, docs) {
+        if(err) return console.error(err);
+        res.json(docs);
+      });
+    });
+
+    app.post('/api/votes', function(req, res) {
+      console.log('votes: post req.body: ****');
+      console.log(req.body);
+      var obj = new Vote(req.body);
+      obj.save( function(err, ogj) {
         if (err) return console.error(err);
         res.status(201).json(obj);
       });

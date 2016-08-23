@@ -44,15 +44,12 @@ export class PollCreatorComponent implements OnInit {
   addChoice() { this.choices.push(this.buildGroup()) }
 
   savePoll() {
-    this.pollService.addPoll(JSON.stringify(this.form.value))
-/*      new Poll(
-        this.form.value['title'],
-        this.form.value['description'],
-        this.form.value['choices'].map(obj => obj['choice'])*/
-        .then(res => {
-          console.log('seivattu: ');
-          console.log(res);
-          this.router.navigate(['/polls']);
-        });
+    this.pollService.addPoll(JSON.stringify({
+          title: this.form.value.title,
+          description: this.form.value.description,
+          choices: this.form.value.choices.map(obj => obj['choice']),
+          voteCount: 0
+        }))
+        .then(res => this.router.navigate(['/polls']));
   }
 }

@@ -1,8 +1,49 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 import { Vote } from '../model/vote.model';
 
-const VOTES = [
+@Injectable()
+export class VoteService {
+  votesUrl = 'api/votes';
+  votes: Vote[] = [];
+
+  private options = new RequestOptions({
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'charset': 'UTF-8'
+    })
+  });
+
+  constructor(private http: Http) { }
+
+  getVotesForPoll(poll_id: string) {
+    return this.getVotes().then(votes =>
+      this.votes.filter(vote => vote.poll_id === poll_id));
+  }
+
+  getVotes(): Promise<Vote[]> {
+    return this.http.get(this.votesUrl)
+               .toPromise()
+               .then(response => response.json() as Vote[])
+               .catch(this.handleError);
+  }
+
+  addVote(vote: any): Promise<any> {
+    return this.http.post(this.votesUrl, vote, this.options)
+               .toPromise()
+               .then(response => response.json())
+               .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
+  }
+}
+
+/*const VOTES = [
   new Vote(1, 1, "HotBot", 1),
   new Vote(2, 1, "Nassu", 1),
   new Vote(3, 1, "Trs", 1),
@@ -17,29 +58,5 @@ const VOTES = [
   new Vote(16, 3, "Cooler", 2),
   new Vote(17, 3, "Pipe", 1),
   new Vote(18, 3, "Dream", 2),
-]
+]*/
 
-
-@Injectable()
-export class VoteService {
-  votes: Vote[] = [];
-
-  constructor() { this.votes = VOTES }
-
-  getVotes(): Promise<Vote[]> {
-    return Promise.resolve(this.votes);
-  }
-
-  getVotesForPoll(poll_id: number) {
-    return this.getVotes().then(votes =>
-      this.votes.filter(vote => vote.poll_id === poll_id));
-  }
-
-  addVote(vote: Vote) {
-    this.votes.push(vote);
-  }
-
-  getVotesSlowly() { return new Promise<Vote[]>(
-    resolve => setTimeout(() => resolve(VOTES), 1000))
-  }
-}

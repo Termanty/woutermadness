@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -32,10 +32,7 @@ export class PollService {
                .catch(this.handleError);
   };
 
-  addPoll(poll: any): Promise<Poll> {
-    let headers = new Headers({ 'content': 'application/json' });
-    console.log('poll stringify: ')
-    console.log(poll);
+  addPoll(poll: any): Promise<any> {
     return this.http.post(this.pollsUrl, poll, this.options)
                .toPromise()
                .then(res => res.json())
@@ -47,18 +44,3 @@ export class PollService {
     return Promise.reject(error.message || error);
   }
 }
-
-/*const POLLS = [
-  new Poll('Clinton vs. Trump',
-    'Title says all. Which one is your favourite?',
-    ['Clinton', 'Trump', 'Not interested'], 1, 8),
-  new Poll('CocaCola vs Pepsi',
-    'Taste maters. Which one is your favourite?',
-    ['CocaCola', 'Pepsi', 'Not for me'], 2, 3),
-  new Poll('Pasta vs Potatoes',
-    'Taste maters. Which one is your favourite?',
-    ['Pasta', 'Potatoes', 'Not for me'], 3, 3),
-  new Poll('Milk vs Vine',
-    'Taste maters. Which one is your favourite?',
-    ['Milk', 'Vine', 'I prefer water'], 4)
-]*/

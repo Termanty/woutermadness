@@ -19,11 +19,7 @@ export class PollsComponent  {
     }
 
   ngOnInit() {
-    this.pollService.getPolls().then(polls => {
-      console.log("ngOnInit: here")
-      console.log(polls);
-      this.polls = polls;
-    });
+    this.pollService.getPolls().then(polls => this.polls = polls);
   }
 
   goPoll(id: string) {

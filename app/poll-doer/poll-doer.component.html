@@ -1,11 +1,15 @@
 <div *ngIf="poll" class="vote">
   <h3>{{poll.title}}</h3>
   <p>{{poll.description}}</p>
-  <form action="">
+  <form [formGroup]="form">
+    <button (click)="saveVote()" class="btn btn-primary pull-right">Vote</button>
     <div *ngFor="let choice of poll.choices; let i = index">
-      <input type="radio" name="vote" value="{{i}}"> {{choice}}
+      <input type="radio" formControlName="vote" value="{{choice}}"> {{choice}}
     </div>
+    <label>Nick: </label>
+    <input type="text" formControlName="nick" value="FooBar">
   </form>
+
 </div>
 
 <br>

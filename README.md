@@ -36,3 +36,12 @@ Purpose of this backend is to give api for vouting polls. Backend uses Mongodb d
 **22.8. 2h Angular / 4h Nodejs** *Connetting fron and back*
 * get /polls from express/nodejs
 * post /polls to express/nodejs
+
+**23.8. 1h Angular / 5h Nodejs** *Connetting fron and back*
+
+**24.8. 2h Angular / 4h Nodejs** *Connetting fron and back*
+
+**25.8. 2h Angular / 4h Nodejs** *Connetting fron and back*
+
+**26.8. 2h Angular / 4h Nodejs** *Connetting fron and back*
+
