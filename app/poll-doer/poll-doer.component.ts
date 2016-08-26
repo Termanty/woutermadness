@@ -40,7 +40,8 @@ export class PollDoerComponent implements OnInit {
     this.voteService.addVote(JSON.stringify({
           poll_id: this.poll._id,
           vote: this.form.value.vote,
-          nick: this.form.value.nick }))
+          nick: this.form.value.nick,
+          voteCount: this.poll.voteCount + 1 }))
         .then(res => this.router.navigate(['/polls']));
   }
 

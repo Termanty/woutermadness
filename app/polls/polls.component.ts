@@ -19,7 +19,9 @@ export class PollsComponent  {
     }
 
   ngOnInit() {
-    this.pollService.getPolls().then(polls => this.polls = polls);
+    this.pollService.getPolls()
+        .then(polls => this.polls = polls.sort(
+          (a, b) => a.title.localeCompare(b.title)));
   }
 
   goPoll(id: string) {

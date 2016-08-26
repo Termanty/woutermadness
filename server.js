@@ -47,6 +47,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log('Connected to MongoDB');
 
+    // TODO: error hadling as handleError() method
+
     app.get('/api/polls', function(req, res) {
       Poll.find({}, function(err, docs) {
         if(err) return console.error(err);
@@ -70,8 +72,13 @@ db.once('open', function() {
     });
 
     app.post('/api/votes', function(req, res) {
-      console.log('votes: post req.body: ****');
-      console.log(req.body);
+      Poll.findById(req.body.poll_id, function(err, poll_obj) { // should I use findByIdAndUpdate ?
+        if (err) return console.log(err);
+        poll_obj.voteCount = req.body.voteCount;
+        poll_obj.save(function(req, res) {
+          if (err) return console.log(err);
+        });
+      });
       var obj = new Vote(req.body);
       obj.save( function(err, ogj) {
         if (err) return console.error(err);

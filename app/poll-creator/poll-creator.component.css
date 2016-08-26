@@ -8,17 +8,17 @@
 .creator div form div {
   padding: 0;
 }
-label {
+.creator label {
   width: 8rem;
   padding: 0 1rem;
   vertical-align: top;
 }
-input {
+.creator input {
   width: 25rem;
   border-style: none;
   border-radius: .2rem;
 }
-textarea {
+.creator textarea {
   width: 25rem;
   border-radius: .2rem;
 }
@@ -27,5 +27,7 @@ textarea {
 }
 .view {
   width: 100%;
+  margin-top: 20px;
+  padding: 1rem;
   background-color: #87c9fc;
 }

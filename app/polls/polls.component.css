@@ -1,13 +1,12 @@
-.selected {
-  background-color: #CFD8DC !important;
-  color: white;
+h3 {
+  text-align: center;
 }
 .polls {
   list-style-type: none;
   width: 35rem;
 }
 .polls li {
-  transform: translateX(-2rem);
+  transform: translateX(4rem);
   cursor: pointer;
   float: left;
   background-color: #EEE;
@@ -17,7 +16,7 @@
 .polls li:hover {
   color: #607D8B;
   background-color: #DDD;
-  transform: translateX(-1.9rem);
+  transform: translateX(3.9rem);
 }
 .polls .left {
   float: left;

@@ -1,10 +1,7 @@
-<h3>Most Popular Polls</h3>
+<h3 style="text-align: center">Most Popular Polls</h3>
 
-<div>
-  <ul>
-    <li *ngFor="let poll of popularPolls">
-      {{poll.title}}
-      <a routerLink="/poll/{{poll._id}}" class="btn btn-sm btn-primary">vote</a>
-    </li>
-  </ul>
+<div *ngFor="let poll of popularPolls" (click)="goPoll(poll._id)">
+  <b>{{poll.title}}</b> <br>
+  <b>{{poll.voteCount}}</b> <br>
+  <span>votes</span>
 </div>

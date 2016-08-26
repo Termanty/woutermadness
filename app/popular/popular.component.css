@@ -1,0 +1,26 @@
+h3 {
+  text-align: center;
+}
+
+div {
+  position: relative;
+  width: 310px;
+  margin: 10px;
+  padding: 20px 0;
+  display: inline-block;
+  text-align: center;
+  background-color: #87c9fc;
+}
+
+div:hover {
+  transform: scale(1.02,1.05);
+}
+
+div span {
+  position: absolute;
+  font-size: 0.7rem;
+  top: 60px;
+  left: 139px;
+}
+
+

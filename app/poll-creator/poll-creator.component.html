@@ -37,11 +37,15 @@
    </div>
 </div>
 
-<div class="view">
-  <h1>{{ form.value.title }}</h1>
-  <h3>{{ form.value.description }}</h3>
-  <div *ngFor="let obj of form.value.choices">
-      <input type="radio"> {{obj["choice"]}}
+<div *ngIf="form.value.title">
+  <div class="view">
+    <h4><i>View</i></h4> <br>
+    <h1>{{ form.value.title }}</h1>
+    <h3>{{ form.value.description }}</h3>
+    <div *ngFor="let obj of form.value.choices">
+      <div *ngIf="obj.choice">
+        <input type="radio"> {{obj["choice"]}}
+      </div>
+    </div>
   </div>
 </div>
-

@@ -1,5 +1,5 @@
 
-@media (min-width: 900px) {
+@media screen  {
     .container{
         max-width: 700px;
     }
